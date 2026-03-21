@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
-            rb.velocity = new Vector3(0, 0, 1 * speed);
+            rb.velocity = new Vector3(0, rb.velocity.y, 1 * speed);
         }
         else if (Input.GetKeyUp(KeyCode.W))
         {
@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.S))
         {
-            rb.velocity = new Vector3(0, 0, -1 * speed);
+            rb.velocity = new Vector3(0, rb.velocity.y, -1 * speed);
         }
         else if (Input.GetKeyUp(KeyCode.S))
         {
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         
         if (Input.GetKey(KeyCode.A))
         {
-            rb.velocity = new Vector3(-1, 0, 0 * speed);
+            rb.velocity = new Vector3(-1 * speed, rb.velocity.y, 0);
         }
         else if (Input.GetKeyUp(KeyCode.A))
         {
@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
         
         if(Input.GetKey(KeyCode.D))
         {
-            rb.velocity = new Vector3(1, 0, 0 * speed);
+            rb.velocity = new Vector3(1 * speed, rb.velocity.y, 0);
         }
         else if (Input.GetKeyUp(KeyCode.D))
         {
