@@ -7,6 +7,9 @@ public class PlayerController : MonoBehaviour
     public Rigidbody rb;
 
     public float speed = 0.1f;
+
+    private float moveX;
+    private float moveY;
     
     // Start is called before the first frame update
     private void Start()
@@ -17,41 +20,30 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        moveX = 0f;
+        moveY = 0f;
+        
         if (Input.GetKey(KeyCode.W))
         {
-            rb.velocity = new Vector3(0, 1 * speed, rb.velocity.z);
+            moveY = 1f;
         }
-        else if (Input.GetKeyUp(KeyCode.W))
+        else if (Input.GetKey(KeyCode.S))
         {
-            rb.velocity = Vector3.zero;
+            moveY = -1f;
         }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            moveX = -1f;
+        }
+        else if(Input.GetKey(KeyCode.D))
+        {
+            moveX = 1f;
+        }
+    }
 
-        if (Input.GetKey(KeyCode.S))
-        {
-            rb.velocity = new Vector3(0, -1 * speed, rb.velocity.z);
-        }
-        else if (Input.GetKeyUp(KeyCode.S))
-        {
-            rb.velocity = Vector3.zero; 
-        }
-        
-        if (Input.GetKey(KeyCode.A))
-        {
-            rb.velocity = new Vector3(-1 * speed, rb.velocity.y, 0);
-        }
-        else if (Input.GetKeyUp(KeyCode.A))
-        {
-            rb.velocity = Vector3.zero;
-        }
-        
-        if(Input.GetKey(KeyCode.D))
-        {
-            rb.velocity = new Vector3(1 * speed, rb.velocity.y, 0);
-        }
-        else if (Input.GetKeyUp(KeyCode.D))
-        {
-            rb.velocity = Vector3.zero;
-        }
+    private void FixedUpdate()
+    {
+        rb.velocity = new Vector3(moveX * speed, moveY * speed, rb.velocity.z);
     }
 }
 
