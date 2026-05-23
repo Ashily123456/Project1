@@ -28,6 +28,9 @@ public class LevelManager : MonoBehaviour
     // dropping animation parameters
     public float dropDuration = 0.5f; // duration of the drop animation
     
+    // intro animation
+    public GameObject introCanvas;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +52,9 @@ public class LevelManager : MonoBehaviour
             
             // debugging
             //Debug.Log("Added " + child.gameObject.name + " to hidden objects list");
+            
+            // intro animation
+            introCanvas = GameObject.Find("Canvas");
         }
     }
 
