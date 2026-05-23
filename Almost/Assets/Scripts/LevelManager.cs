@@ -34,6 +34,13 @@ public class LevelManager : MonoBehaviour
         // loading all the hidden objects into the list
         foreach (Transform child in hiddenObjectsParent)
         {
+            // add interactive script to the child objects
+            if (child.GetComponent<InteractiveObject>() == null)
+            {
+                InteractiveObject interaction = child.gameObject.AddComponent<InteractiveObject>();
+                interaction.HideIndicator(); // hide the indicator at the start of the game
+            }
+            
             hiddenObjects.Add(child.gameObject);
             
             // turn off the sprite renderer and collider 
@@ -138,6 +145,9 @@ public class LevelManager : MonoBehaviour
         
         // turn on the collider to make it interactable
         item.GetComponent<Collider>().enabled = true;
+        
+        // turn on the indicator from the item
+        item.GetComponent<InteractiveObject>().ShowIndicator();
         
         // debugging
         Debug.Log("Dropped " + item.name);
