@@ -8141,8 +8141,33 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 646721962694288434, guid: d1fd245aa76eed84d991454d8db65a86,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 837193263}
   m_SourcePrefab: {fileID: 100100000, guid: d1fd245aa76eed84d991454d8db65a86, type: 3}
+--- !u!1 &837193262 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 646721962694288434, guid: d1fd245aa76eed84d991454d8db65a86,
+    type: 3}
+  m_PrefabInstance: {fileID: 837193261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &837193263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837193262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11986c2640c6aa742a1c677982f870e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hiddenObjectsParent: {fileID: 33990466}
+  dropDuration: 0.25
+  introCanvas: {fileID: 0}
 --- !u!1 &869116996
 GameObject:
   m_ObjectHideFlags: 0
@@ -18311,57 +18336,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1983452818
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1983452820}
-  - component: {fileID: 1983452819}
-  m_Layer: 0
-  m_Name: LevelManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1983452819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1983452818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11986c2640c6aa742a1c677982f870e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hiddenObjectsParent: {fileID: 33990466}
-  audioSource: {fileID: 0}
-  holySoundEffectClip: {fileID: 0}
-  dropSoundEffectClip: {fileID: 0}
-  hitStopDuration: 0.2
-  dropDuration: 0.25
-  introCanvas: {fileID: 0}
---- !u!4 &1983452820
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1983452818}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 960.56354, y: 540.8552, z: 1.1237435}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1993296346
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20411,7 +20385,6 @@ SceneRoots:
   - {fileID: 137740270}
   - {fileID: 896950418}
   - {fileID: 837193261}
-  - {fileID: 1983452820}
   - {fileID: 870364210}
   - {fileID: 878543441}
   - {fileID: 895179113}

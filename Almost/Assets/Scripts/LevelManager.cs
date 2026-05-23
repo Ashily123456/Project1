@@ -26,6 +26,12 @@ public class LevelManager : MonoBehaviour
     private List<GameObject> hiddenObjects = new List<GameObject>();
     
     // dropping animation parameters
+    public AudioSource audioSource;
+    public AudioClip holySoundEffectClip;
+    public AudioClip dropSoundEffectClip;
+    
+    public float hitStopDuration = 0.2f;
+    
     public float dropDuration = 0.5f; // duration of the drop animation
     
     // intro animation
@@ -127,12 +133,25 @@ public class LevelManager : MonoBehaviour
         // record the origin position
         Vector3 targetPosition = item.transform.position;
         
-        // show the item sprite
-        item.GetComponent<SpriteRenderer>().enabled = true;
-        
         // higher position
         Vector3 startPosition = targetPosition + new Vector3(0, 5f, 0);
         item.transform.position = startPosition;
+        
+        // step 0: hit-stop
+        yield return new WaitForSeconds(hitStopDuration);
+        
+        // step 1: play holy sound effect
+        Debug.Log("Playing holy sound effect and showing the holy light...");
+        if (audioSource != null)
+        {
+            audioSource.PlayOneShot(holySoundEffectClip);
+        }
+        
+        // step 2: 
+        
+        
+        // show the item sprite
+        item.GetComponent<SpriteRenderer>().enabled = true;
         
         // droooooooppping
         float elapsedTime = 0f;
