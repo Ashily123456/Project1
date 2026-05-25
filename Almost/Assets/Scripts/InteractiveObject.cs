@@ -38,7 +38,14 @@ public class InteractiveObject : MonoBehaviour
         
         // add the audio source component to the game object
         audioSource = new AudioSource();
-        audioSource.clip = droppingAudioClip;
+        if (droppingAudioClip != null)
+        {
+            audioSource.clip = droppingAudioClip;
+        }
+        else // assign a default sound effect
+        {
+            
+        }
     }
 
     // Update is called once per frame

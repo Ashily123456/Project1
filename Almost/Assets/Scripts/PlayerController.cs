@@ -45,6 +45,17 @@ public class PlayerController : MonoBehaviour
     {
         rb.velocity = new Vector3(moveX * speed, moveY * speed, rb.velocity.z);
     }
+    
+    public void FreezeControls()
+    {
+        rb.velocity = Vector3.zero;
+        enabled = false; // disable this script to prevent further movement
+    }
+    
+    public void ResumeControls()
+    {
+        enabled = true; // enable this script to allow movement again
+    }
 }
 
 
