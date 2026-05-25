@@ -31,6 +31,7 @@ public class LevelManager : MonoBehaviour
     public AudioClip dropSoundEffectClip;
     
     public float hitStopDuration = 0.2f;
+    public float delayBeforeDrop = 1.25f;
     
     public float dropDuration = 0.5f; // duration of the drop animation
     
@@ -147,9 +148,10 @@ public class LevelManager : MonoBehaviour
             audioSource.PlayOneShot(holySoundEffectClip);
         }
         
-        // step 2: 
+        // step 2: hit-stop but 2
+        yield return new WaitForSeconds(hitStopDuration);
         
-        
+        // actual drop
         // show the item sprite
         item.GetComponent<SpriteRenderer>().enabled = true;
         
@@ -167,6 +169,9 @@ public class LevelManager : MonoBehaviour
         
         // ensure the item is exactly at the target position at the end of the animation
         item.transform.position = targetPosition;
+        
+        // play drop sound effect
+        item.GetComponent<InteractiveObject>().PlayDroppingAudio();
         
         // turn on the collider to make it interactable
         item.GetComponent<Collider>().enabled = true;

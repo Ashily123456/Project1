@@ -8,6 +8,11 @@ public class InteractiveObject : MonoBehaviour
     [SerializeField] private bool hasBeenInteractedWith = false;
     [SerializeField] private SpriteRenderer indicator;
     [SerializeField] private Animator animator;
+    
+    // the list holding all the audio clips played when the objects dropped
+    public AudioSource audioSource;
+    public List<AudioClip> droppingAudioClips;
+    public AudioClip droppingAudioClip;
 
     private void Awake()
     {
@@ -18,7 +23,22 @@ public class InteractiveObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // loading all dropping audio clips from the Resources folder
+        droppingAudioClips = new List<AudioClip>(Resources.LoadAll<AudioClip>("Audio"));
         
+        // find the audio clip with the name of current gameobject
+        foreach (AudioClip clip in droppingAudioClips)
+        {
+            if (clip.name == gameObject.name)
+            {
+                droppingAudioClip = clip;
+                break;
+            }
+        }
+        
+        // add the audio source component to the game object
+        audioSource = new AudioSource();
+        audioSource.clip = droppingAudioClip;
     }
 
     // Update is called once per frame
@@ -78,5 +98,17 @@ public class InteractiveObject : MonoBehaviour
         
         // activate the animation
         animator.Play("Spark");
+    }
+
+    public void PlayDroppingAudio()
+    {
+        if (audioSource != null && droppingAudioClip != null)
+        {
+            audioSource.Play();
+        }
+        else
+        {
+            Debug.LogWarning("Audio source or dropping audio clip not found for " + gameObject.name);
+        }
     }
 }
