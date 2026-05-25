@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -170,6 +171,9 @@ public class LevelManager : MonoBehaviour
         // ensure the item is exactly at the target position at the end of the animation
         item.transform.position = targetPosition;
         
+        // screen shake effect
+        GetComponent<CinemachineImpulseSource>().GenerateImpulseWithForce(1f);
+        
         // play drop sound effect
         item.GetComponent<InteractiveObject>().PlayDroppingAudio();
         
@@ -182,4 +186,5 @@ public class LevelManager : MonoBehaviour
         // debugging
         Debug.Log("Dropped " + item.name);
     }
+    
 }
