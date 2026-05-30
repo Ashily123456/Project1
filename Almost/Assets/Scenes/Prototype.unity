@@ -14236,7 +14236,7 @@ GameObject:
   - component: {fileID: 1520294334}
   - component: {fileID: 1520294333}
   m_Layer: 0
-  m_Name: bridge
+  m_Name: fridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19784,84 +19784,9 @@ Transform:
   m_LocalPosition: {x: -3.5999997, y: -4.625, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2110301577}
+  m_Children: []
   m_Father: {fileID: 33990466}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &2110301576
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 2110262729}
-    m_Modifications:
-    - target: {fileID: 3555385980518625976, guid: a3de1ed28c04f6e45ad8c9dcd417be1d,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.351
-      objectReference: {fileID: 0}
-    - target: {fileID: 3555385980518625976, guid: a3de1ed28c04f6e45ad8c9dcd417be1d,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.557
-      objectReference: {fileID: 0}
-    - target: {fileID: 3555385980518625976, guid: a3de1ed28c04f6e45ad8c9dcd417be1d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3555385980518625976, guid: a3de1ed28c04f6e45ad8c9dcd417be1d,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3555385980518625976, guid: a3de1ed28c04f6e45ad8c9dcd417be1d,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3555385980518625976, guid: a3de1ed28c04f6e45ad8c9dcd417be1d,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3555385980518625976, guid: a3de1ed28c04f6e45ad8c9dcd417be1d,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3555385980518625976, guid: a3de1ed28c04f6e45ad8c9dcd417be1d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3555385980518625976, guid: a3de1ed28c04f6e45ad8c9dcd417be1d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3555385980518625976, guid: a3de1ed28c04f6e45ad8c9dcd417be1d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4307663076246058097, guid: a3de1ed28c04f6e45ad8c9dcd417be1d,
-        type: 3}
-      propertyPath: m_Name
-      value: Spark
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a3de1ed28c04f6e45ad8c9dcd417be1d, type: 3}
---- !u!4 &2110301577 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3555385980518625976, guid: a3de1ed28c04f6e45ad8c9dcd417be1d,
-    type: 3}
-  m_PrefabInstance: {fileID: 2110301576}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2114779840
 GameObject:
   m_ObjectHideFlags: 0
