@@ -36,16 +36,19 @@ public class InteractiveObject : MonoBehaviour
             }
         }
         
+        // if no matching audio clip is found, assign a default sound effect
+        if (droppingAudioClip == null)
+        {
+            // assign the default sound effect
+            droppingAudioClip = Resources.Load<AudioClip>("Audio/default");
+        }
+        
         // add the audio source component to the game object
-        audioSource = new AudioSource();
-        if (droppingAudioClip != null)
-        {
-            audioSource.clip = droppingAudioClip;
-        }
-        else // assign a default sound effect
-        {
-            
-        }
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false; // mute
+        
+        // implement the sound effects
+        audioSource.clip = droppingAudioClip;
     }
 
     // Update is called once per frame
