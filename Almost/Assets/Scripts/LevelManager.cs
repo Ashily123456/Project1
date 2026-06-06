@@ -172,7 +172,18 @@ public class LevelManager : MonoBehaviour
         item.transform.position = targetPosition;
         
         // screen shake effect
-        GetComponent<CinemachineImpulseSource>().GenerateImpulseWithForce(1f);
+        float finalForce = 1f;
+
+        if (item.CompareTag("Light"))
+        {
+            finalForce = 0.2f;
+        }
+        else if (item.CompareTag("Heavy"))
+        {
+            finalForce = 2.0f;
+        }
+        
+        GetComponent<CinemachineImpulseSource>().GenerateImpulseWithForce(finalForce);
         
         // play drop sound effect
         item.GetComponent<InteractiveObject>().PlayDroppingAudio();

@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 15233624}
   m_Layer: 0
   m_Name: glasses
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -811,7 +811,7 @@ GameObject:
   - component: {fileID: 76020328}
   m_Layer: 0
   m_Name: chips
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2116,7 +2116,7 @@ GameObject:
   - component: {fileID: 159791659}
   m_Layer: 0
   m_Name: vending machine
-  m_TagString: Untagged
+  m_TagString: Heavy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2223,7 +2223,7 @@ GameObject:
   - component: {fileID: 174703624}
   m_Layer: 0
   m_Name: main unit
-  m_TagString: Untagged
+  m_TagString: Heavy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4439,7 +4439,7 @@ GameObject:
   - component: {fileID: 430209558}
   m_Layer: 0
   m_Name: box
-  m_TagString: Untagged
+  m_TagString: Heavy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4630,7 +4630,7 @@ GameObject:
   - component: {fileID: 448135134}
   m_Layer: 0
   m_Name: pencil sharpener
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4905,7 +4905,7 @@ GameObject:
   - component: {fileID: 458019377}
   m_Layer: 0
   m_Name: news
-  m_TagString: Untagged
+  m_TagString: Heavy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5370,7 +5370,7 @@ GameObject:
   - component: {fileID: 544951574}
   m_Layer: 0
   m_Name: document
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5561,7 +5561,7 @@ GameObject:
   - component: {fileID: 566763516}
   m_Layer: 0
   m_Name: sand
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6689,6 +6689,80 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &655710709
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2110262729}
+    m_Modifications:
+    - target: {fileID: 3555385980518625976, guid: a3de1ed28c04f6e45ad8c9dcd417be1d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555385980518625976, guid: a3de1ed28c04f6e45ad8c9dcd417be1d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555385980518625976, guid: a3de1ed28c04f6e45ad8c9dcd417be1d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555385980518625976, guid: a3de1ed28c04f6e45ad8c9dcd417be1d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555385980518625976, guid: a3de1ed28c04f6e45ad8c9dcd417be1d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555385980518625976, guid: a3de1ed28c04f6e45ad8c9dcd417be1d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555385980518625976, guid: a3de1ed28c04f6e45ad8c9dcd417be1d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555385980518625976, guid: a3de1ed28c04f6e45ad8c9dcd417be1d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555385980518625976, guid: a3de1ed28c04f6e45ad8c9dcd417be1d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555385980518625976, guid: a3de1ed28c04f6e45ad8c9dcd417be1d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4307663076246058097, guid: a3de1ed28c04f6e45ad8c9dcd417be1d,
+        type: 3}
+      propertyPath: m_Name
+      value: Spark
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a3de1ed28c04f6e45ad8c9dcd417be1d, type: 3}
+--- !u!4 &655710710 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3555385980518625976, guid: a3de1ed28c04f6e45ad8c9dcd417be1d,
+    type: 3}
+  m_PrefabInstance: {fileID: 655710709}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &661825989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8566,7 +8640,7 @@ GameObject:
   - component: {fileID: 901370726}
   m_Layer: 0
   m_Name: cookie
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9356,7 +9430,7 @@ GameObject:
   - component: {fileID: 1008921320}
   m_Layer: 0
   m_Name: loading
-  m_TagString: Untagged
+  m_TagString: Heavy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9621,7 +9695,7 @@ GameObject:
   - component: {fileID: 1037624139}
   m_Layer: 0
   m_Name: light
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10908,7 +10982,7 @@ GameObject:
   - component: {fileID: 1174960749}
   m_Layer: 0
   m_Name: coffee
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12069,7 +12143,7 @@ GameObject:
   - component: {fileID: 1268234381}
   m_Layer: 0
   m_Name: ?box
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12260,7 +12334,7 @@ GameObject:
   - component: {fileID: 1280778373}
   m_Layer: 0
   m_Name: oven
-  m_TagString: Untagged
+  m_TagString: Heavy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13334,7 +13408,7 @@ GameObject:
   - component: {fileID: 1366465404}
   m_Layer: 0
   m_Name: calendar
-  m_TagString: Untagged
+  m_TagString: Heavy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14237,7 +14311,7 @@ GameObject:
   - component: {fileID: 1520294333}
   m_Layer: 0
   m_Name: fridge
-  m_TagString: Untagged
+  m_TagString: Heavy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14344,7 +14418,7 @@ GameObject:
   - component: {fileID: 1527193048}
   m_Layer: 0
   m_Name: key
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14767,7 +14841,7 @@ GameObject:
   - component: {fileID: 1579166592}
   m_Layer: 0
   m_Name: airpods
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15421,7 +15495,7 @@ GameObject:
   - component: {fileID: 1688769250}
   m_Layer: 0
   m_Name: enter
-  m_TagString: Untagged
+  m_TagString: Heavy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15682,7 +15756,7 @@ GameObject:
   - component: {fileID: 1736857877}
   m_Layer: 0
   m_Name: computer
-  m_TagString: Untagged
+  m_TagString: Heavy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17062,7 +17136,7 @@ GameObject:
   - component: {fileID: 1907648681}
   m_Layer: 0
   m_Name: message
-  m_TagString: Untagged
+  m_TagString: Heavy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19784,7 +19858,8 @@ Transform:
   m_LocalPosition: {x: -3.5999997, y: -4.625, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 655710710}
   m_Father: {fileID: 33990466}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2114779840
@@ -20235,6 +20310,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 330585546}
+  - {fileID: 145529586}
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 1437063164}
@@ -20243,7 +20319,6 @@ SceneRoots:
   - {fileID: 1262758707}
   - {fileID: 1439844243}
   - {fileID: 232433011}
-  - {fileID: 145529586}
   - {fileID: 137740270}
   - {fileID: 896950418}
   - {fileID: 837193261}
