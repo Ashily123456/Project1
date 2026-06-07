@@ -22,6 +22,7 @@ public class ExitTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player entered the exit trigger");
+            GameManager.instance.LoadEndings(true); // load the good ending
         }
     }
 }
