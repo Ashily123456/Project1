@@ -11,10 +11,16 @@ public class PlayerController : MonoBehaviour
     private float moveX;
     private float moveY;
     
+    public Animator animator; 
+    public SpriteRenderer spriteRenderer;
+    
     // Start is called before the first frame update
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -39,6 +45,20 @@ public class PlayerController : MonoBehaviour
         {
             moveX = 1f;
         }
+        
+        // turn around
+        if (moveX > 0)
+        {
+            spriteRenderer.flipX = false; // face right
+        }
+        else if (moveX < 0)
+        {
+            spriteRenderer.flipX = true; // face left
+        }
+        
+        // set the animation parameters
+        bool isMoving = (moveX != 0f || moveY != 0f);
+        animator.SetBool("isWalking", isMoving);
     }
 
     private void FixedUpdate()
@@ -56,6 +76,9 @@ public class PlayerController : MonoBehaviour
     {
         enabled = true; // enable this script to allow movement again
     }
+    
+    // melting
+    
 }
 
 

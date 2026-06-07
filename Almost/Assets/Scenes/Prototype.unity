@@ -13705,6 +13705,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   speed: 10
+  animator: {fileID: 0}
+  spriteRenderer: {fileID: 0}
 --- !u!65 &1437063161
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20176,6 +20178,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Center.y
       value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 7853405275800437790, guid: c20e2e8e5d80c8e4eb80922c8028d15c,
+        type: 3}
+      propertyPath: speed
+      value: 4.6
       objectReference: {fileID: 0}
     - target: {fileID: 9006999903243633752, guid: c20e2e8e5d80c8e4eb80922c8028d15c,
         type: 3}
