@@ -7,5 +7,6 @@ public class ReplayTrigger : MonoBehaviour
     public void ReplayGame()
     {
         GameManager.instance.LoadScene("Prototype");
+        GameManager.instance.gameStarted = false;
     }
 }

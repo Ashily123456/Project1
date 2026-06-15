@@ -14,11 +14,13 @@ public class LevelManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            
+            Debug.LogWarning("Multiple instances of LevelManager detected!");
         }
     }
 
@@ -37,10 +39,9 @@ public class LevelManager : MonoBehaviour
     public float dropDuration = 0.5f; // duration of the drop animation
     
     // intro animation
+    [SerializeField] 
+    private bool playIntroAnimation = true;
     public GameObject introCanvas;
-    
-    // flag game begin
-    public bool gameStarted = false;
     
     // Start is called before the first frame update
     void Start()
@@ -66,6 +67,22 @@ public class LevelManager : MonoBehaviour
             
             // intro animation
             introCanvas = GameObject.Find("IntroCanvas");
+        }
+        
+        // initialize
+        GameManager.instance.gameStarted = false;
+        
+        // play the intro animation if the flag is set to true
+        if (playIntroAnimation && introCanvas != null)
+        {
+            // find avatar on the fist child
+            introCanvas.transform.GetChild(0).GetComponent<Animator>().Play("IntroStoryBoard");
+        }
+        else
+        {
+            Debug.LogWarning("Intro canvas not found or playIntroAnimation is set to false. Skipping intro animation.");
+            introCanvas.SetActive(false);
+            GameManager.instance.gameStarted = true; // start the game immediately if no intro animation
         }
     }
 
@@ -200,11 +217,5 @@ public class LevelManager : MonoBehaviour
         // debugging
         Debug.Log("Dropped " + item.name);
     }
-    
-    /*// intro cutscene
-    private IEnumerator PlayIntroCutscene()
-    {
-        
-    }*/
-    
+
 }

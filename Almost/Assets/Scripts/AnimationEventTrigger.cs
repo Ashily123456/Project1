@@ -10,6 +10,6 @@ public class AnimationEventTrigger : MonoBehaviour
         LevelManager.instance.introCanvas.SetActive(false);
         
         // flag game begin
-        LevelManager.instance.gameStarted = true;
+        GameManager.instance.gameStarted = true;
     }
 }

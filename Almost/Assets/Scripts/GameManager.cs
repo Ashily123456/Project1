@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
     public CanvasGroup blackScreen;
     public float fadeDuration = 0.9f;
     
+    // flag game begin
+    public bool gameStarted = false;
+    
     // Start is called before the first frame update
     void Start()
     {
