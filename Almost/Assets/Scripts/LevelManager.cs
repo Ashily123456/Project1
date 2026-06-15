@@ -39,6 +39,9 @@ public class LevelManager : MonoBehaviour
     // intro animation
     public GameObject introCanvas;
     
+    // flag game begin
+    public bool gameStarted = false;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -62,7 +65,7 @@ public class LevelManager : MonoBehaviour
             //Debug.Log("Added " + child.gameObject.name + " to hidden objects list");
             
             // intro animation
-            introCanvas = GameObject.Find("Canvas");
+            introCanvas = GameObject.Find("IntroCanvas");
         }
     }
 
@@ -197,5 +200,11 @@ public class LevelManager : MonoBehaviour
         // debugging
         Debug.Log("Dropped " + item.name);
     }
+    
+    /*// intro cutscene
+    private IEnumerator PlayIntroCutscene()
+    {
+        
+    }*/
     
 }

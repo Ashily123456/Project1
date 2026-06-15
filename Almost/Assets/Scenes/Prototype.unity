@@ -399,6 +399,7 @@ GameObject:
   - component: {fileID: 28361702}
   - component: {fileID: 28361701}
   - component: {fileID: 28361703}
+  - component: {fileID: 28361704}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -432,7 +433,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 28361699}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -484,6 +485,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &28361704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28361699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f2b43d1ccd06dc40af000bea61c8c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &30024169
 GameObject:
   m_ObjectHideFlags: 0
@@ -1570,7 +1583,7 @@ GameObject:
   - component: {fileID: 137740268}
   - component: {fileID: 137740267}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: IntroCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13707,6 +13720,7 @@ MonoBehaviour:
   speed: 10
   animator: {fileID: 0}
   spriteRenderer: {fileID: 0}
+  meltTimeGap: 5
 --- !u!65 &1437063161
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18281,6 +18295,7 @@ MonoBehaviour:
   delayBeforeDrop: 1.25
   dropDuration: 0.25
   introCanvas: {fileID: 0}
+  gameStarted: 0
 --- !u!4 &1983452820
 Transform:
   m_ObjectHideFlags: 0

@@ -32,7 +32,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // melting -- if already melting, skip the rest of the code
-        if (isMelting)
+        if (isMelting || 
+            LevelManager.instance.gameStarted == false)
         {
             return;
         }
