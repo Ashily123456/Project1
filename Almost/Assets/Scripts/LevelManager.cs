@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using TMPro;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -31,7 +32,6 @@ public class LevelManager : MonoBehaviour
     // dropping animation parameters
     public AudioSource audioSource;
     public AudioClip holySoundEffectClip;
-    public AudioClip dropSoundEffectClip;
     
     public float hitStopDuration = 0.2f;
     public float delayBeforeDrop = 1.25f;
@@ -42,6 +42,15 @@ public class LevelManager : MonoBehaviour
     [SerializeField] 
     private bool playIntroAnimation = true;
     public GameObject introCanvas;
+    
+    // intro dialogue box
+    public int guaranteedDialogueCount = 3; // the total amount of dialogue boxes in the intro part
+    public float dialogueProbability = 0.3f; // the probability of showing a dialogue box after dropping an item
+    private int currentInteractionCount = 0;
+    
+    public GameObject dialogueCanvas;
+    public GameObject dialogueBox;
+    public TextMeshProUGUI dialogueText;
     
     // Start is called before the first frame update
     void Start()
@@ -64,10 +73,16 @@ public class LevelManager : MonoBehaviour
             
             // debugging
             //Debug.Log("Added " + child.gameObject.name + " to hidden objects list");
-            
-            // intro animation
-            introCanvas = GameObject.Find("IntroCanvas");
         }
+        
+        // intro animation
+        introCanvas = GameObject.Find("IntroCanvas");
+            
+        // dialogue boxes
+        dialogueCanvas = GameObject.Find("DialogueCanvas");
+        dialogueBox = dialogueCanvas.transform.GetChild(0).gameObject;
+        dialogueText = dialogueBox.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        dialogueBox.SetActive(false);
         
         // initialize
         GameManager.instance.gameStarted = false;
@@ -92,7 +107,7 @@ public class LevelManager : MonoBehaviour
         
     }
 
-    public void DropNextItem()
+    public void DropNextItem(ItemType currentItemType)
     {
         if (hiddenObjects.Count == 0) //TODO : SHOULD BE 1, TO TRIGGER THE BAD ENDING
         {
@@ -147,10 +162,10 @@ public class LevelManager : MonoBehaviour
         hiddenObjects.Remove(itemToDrop);
         
         // start the drop animation
-        StartCoroutine(DropAnimation(itemToDrop, dropDuration));
+        StartCoroutine(DropAnimation(itemToDrop, dropDuration, currentItemType));
     }
 
-    private IEnumerator DropAnimation(GameObject item, float duration)
+    private IEnumerator DropAnimation(GameObject item, float duration, ItemType currentItemType)
     {
         // record the origin position
         Vector3 targetPosition = item.transform.position;
@@ -169,8 +184,21 @@ public class LevelManager : MonoBehaviour
             audioSource.PlayOneShot(holySoundEffectClip);
         }
         
-        // step 2: hit-stop but 2
-        yield return new WaitForSeconds(hitStopDuration);
+        // todo step 2: show holy effect
+        
+        // step 3: show dialogue box
+        ItemType itemType = currentItemType;
+        ShowDialogue(itemType);
+        
+        // step 3.5: time buffer for reading dialogues
+        if (dialogueBox.activeSelf) // only wait if the dialogue box is active
+        {
+            yield return new WaitForSeconds(2.5f);
+            dialogueBox.SetActive(false); // hide the dialogue box after the buffer time
+        }
+        
+        // step 4: hit-stop but 2
+        yield return new WaitForSeconds(delayBeforeDrop);
         
         // actual drop
         // show the item sprite
@@ -218,4 +246,88 @@ public class LevelManager : MonoBehaviour
         Debug.Log("Dropped " + item.name);
     }
 
+    // dialogue boxes
+    public void ShowDialogue(ItemType type)
+    {
+        currentInteractionCount++;
+        
+        bool shouldShowDialogue = false;
+
+        if (currentInteractionCount <= guaranteedDialogueCount)
+        {
+            shouldShowDialogue = true; // show guaranteed dialogues
+        }
+        else
+        {
+            // show dialogues based on probability
+            float roll = UnityEngine.Random.value; // random value between 0 and 1
+            
+            if (roll < dialogueProbability)
+            {
+                shouldShowDialogue = true;
+            }
+        }
+
+        // if the dialogue should not be shown, hide the dialogue box and return
+        if (!shouldShowDialogue)
+        {
+            dialogueBox.SetActive(false);
+            return;
+        }
+        
+        // otherwise, show the dialogue box with the appropriate text
+        dialogueBox.SetActive(true);
+
+        switch (type)
+        {
+            // first item -- desk
+            case ItemType.Desk:
+                dialogueText.text = "Alright, I'm at my desk. \n Today is the day I absolutely, positively finish all my work... probably.";
+                break;
+            
+            // food, get energy
+            case ItemType.Food:
+                dialogueText.text = "Oops. Well, I couldn't possibly work on an empty stomach. \n Consider this... brain fuel!";
+                break;
+            
+            // drinks, stay hydrated
+            case ItemType.Drinks:
+                dialogueText.text = "Ah, much better. \n A well-hydrated brain is a productive brain, right?";
+                break;
+            
+            // coffee, wake-up
+            case ItemType.Coffee:
+                dialogueText.text = "I had to! Caffeine levels were critically low. \n Now I can finally focus.";
+                break;
+            
+            // planning, get ready for the task
+            case ItemType.Planning:
+                dialogueText.text = "There. A perfectly sharpened pencil and a sorted list. \n I'm just being efficient!";
+                break;
+            
+            // temperature, get warm... or cold
+            case ItemType.Temperature:
+                dialogueText.text = "Ah, perfect. \n I was just adjusting the environment for peak performance, that's all.";
+                break;
+            
+            // distraction, what's happening
+            case ItemType.Distraction:
+                dialogueText.text = "What if it was an absolute emergency? \n Staying informed is just me being a responsible adult!";
+                break;
+            
+            // technology, get techy
+            case ItemType.Technology:
+                dialogueText.text = "Finally connected! \n I was just... optimizing my digital workspace before starting.";
+                break;
+            
+            // curiosity, what's inside the box?
+            case ItemType.Curiosity:
+                dialogueText.text = "Okay, I just HAD to know what that was. \n Curiosity is a sign of intelligence, anyway!";
+                break;
+            
+            default:
+                Debug.LogWarning("Unhandled item type for dialogue: " + type);
+                break;
+        }
+    }
 }

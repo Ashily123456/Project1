@@ -1650,7 +1650,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &137740270
 RectTransform:
@@ -9262,6 +9262,7 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   droppingAudioClips: []
   droppingAudioClip: {fileID: 0}
+  itemType: 0
 --- !u!1 &985661386
 GameObject:
   m_ObjectHideFlags: 0
@@ -18290,12 +18291,16 @@ MonoBehaviour:
   hiddenObjectsParent: {fileID: 33990466}
   audioSource: {fileID: 0}
   holySoundEffectClip: {fileID: 0}
-  dropSoundEffectClip: {fileID: 0}
   hitStopDuration: 0.2
   delayBeforeDrop: 1.25
   dropDuration: 0.25
+  playIntroAnimation: 0
   introCanvas: {fileID: 0}
-  gameStarted: 0
+  guaranteedDialogueCount: 3
+  dialogueProbability: 0.3
+  dialogueCanvas: {fileID: 0}
+  dialogueBox: {fileID: 0}
+  dialogueText: {fileID: 0}
 --- !u!4 &1983452820
 Transform:
   m_ObjectHideFlags: 0
@@ -20419,7 +20424,7 @@ GameObject:
   - component: {fileID: 4454114750895879043}
   - component: {fileID: 7120545476215551431}
   m_Layer: 5
-  m_Name: Dialogue
+  m_Name: DialogueCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

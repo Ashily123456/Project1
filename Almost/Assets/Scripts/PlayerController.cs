@@ -81,22 +81,30 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            idleTimer += Time.deltaTime;
-            
-            if (idleTimer >= meltTimeGap)
+            if (LevelManager.instance != null && 
+                LevelManager.instance.dialogueBox.activeSelf)
             {
-                // start melting
-                isMelting = true;
+                idleTimer = 0; // reset the idle timer if dialogue box is active
+            }
+            else
+            {
+                idleTimer += Time.deltaTime;
+            
+                if (idleTimer >= meltTimeGap)
+                {
+                    // start melting
+                    isMelting = true;
                 
-                animator.Play("Melting");
+                    animator.Play("Melting");
                 
-                // freeze the player ctrl
-                FreezeControls();
-                Debug.Log("Player started melting! Game Over!!");
+                    // freeze the player ctrl
+                    FreezeControls();
+                    Debug.Log("Player started melting! Game Over!!");
                 
-                // coroutine to wait for the melting animation to finish
-                // before showing the game over screen
-                StartCoroutine(WaitAndGameOver(1.5f));
+                    // coroutine to wait for the melting animation to finish
+                    // before showing the game over screen
+                    StartCoroutine(WaitAndGameOver(1.5f));
+                }
             }
         }
     }
