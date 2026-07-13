@@ -71,6 +71,10 @@ public class LevelManager : MonoBehaviour
             child.GetComponent<SpriteRenderer>().enabled = false;
             child.GetComponent<Collider>().enabled = false;
             
+            // holy-sound-effect
+            audioSource = GetComponent<AudioSource>();
+            holySoundEffectClip = Resources.Load<AudioClip>("Audio/holy-spell-cast");
+            
             // debugging
             //Debug.Log("Added " + child.gameObject.name + " to hidden objects list");
         }
@@ -178,9 +182,9 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(hitStopDuration);
         
         // step 1: play holy sound effect
-        Debug.Log("Playing holy sound effect and showing the holy light...");
         if (audioSource != null)
         {
+            Debug.Log("Playing holy sound effect and showing the holy light...");
             audioSource.PlayOneShot(holySoundEffectClip);
         }
         
