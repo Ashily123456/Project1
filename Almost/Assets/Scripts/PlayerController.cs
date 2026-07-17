@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,6 +21,9 @@ public class PlayerController : MonoBehaviour
     private float idleTimer = 0f;
     private bool isMelting = false;
     
+    // squashing
+    public VisualEffect squashEffect;
+    
     // Start is called before the first frame update
     private void Start()
     {
@@ -26,6 +31,8 @@ public class PlayerController : MonoBehaviour
         
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        squashEffect = GameObject.Find("SquashVFX").GetComponent<VisualEffect>();
     }
 
     // Update is called once per frame
@@ -134,6 +141,28 @@ public class PlayerController : MonoBehaviour
         
         // load the bad ending scene
         GameManager.instance.LoadEndings(false);
+    }
+    
+    public void SquashPlayer()
+    {
+        // if already melting, do nothing
+        if (isMelting) return; 
+        
+        isMelting = true;
+        
+        // camera shake
+        LevelManager.instance.gameObject.GetComponent<CinemachineImpulseSource>().GenerateImpulseWithForce(1f);
+        
+        // make the player sprite vanish and play the squash particles
+        spriteRenderer.enabled = false;
+        
+        squashEffect.transform.position = transform.position;
+        squashEffect.SendEvent("OnSquash");
+        
+        FreezeControls();
+        Debug.Log("Player got squashed! BAD ENDING!!");
+        
+        StartCoroutine(WaitAndGameOver(1.5f));
     }
 }
 

@@ -232,6 +232,10 @@ public class LevelManager : MonoBehaviour
         // show the item sprite
         item.GetComponent<SpriteRenderer>().enabled = true;
         
+        // turn on the collider to check if it is hitting the player
+        item.GetComponent<Collider>().enabled = true;
+        item.GetComponent<InteractiveObject>().isFalling = true;
+        
         // droooooooppping
         float elapsedTime = 0f;
 
@@ -246,6 +250,21 @@ public class LevelManager : MonoBehaviour
         
         // ensure the item is exactly at the target position at the end of the animation
         item.transform.position = targetPosition;
+        
+        // flag the isFalling to false
+        item.GetComponent<InteractiveObject>().isFalling = false;
+        
+        /*// ending-related, check if the item hit the player
+        if (player != null)
+        {
+            float distance = Vector3.Distance(targetPosition, player.transform.position);
+
+            if (distance < squashBuffer)
+            {
+                // squash the player, bad ending
+                player.GetComponent<PlayerController>().SquashPlayer();
+            }
+        }*/
         
         // screen shake effect
         float finalForce = 1f;

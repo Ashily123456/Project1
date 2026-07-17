@@ -18,6 +18,8 @@ public enum ItemType
 
 public class InteractiveObject : MonoBehaviour
 {
+    public bool isFalling = false;
+    
     [SerializeField] private bool hasBeenInteractedWith = false;
     [SerializeField] private SpriteRenderer indicator;
     [SerializeField] private Animator animator;
@@ -121,6 +123,14 @@ public class InteractiveObject : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
+        if (isFalling && other.gameObject.CompareTag("Player"))
+        {
+            // disable the player collider to make the item keep falling
+            other.gameObject.GetComponent<Collider>().enabled = false;
+            other.gameObject.GetComponent<PlayerController>().SquashPlayer();
+            return; // exit the function to avoid further processing
+        }
+        
         if (other.gameObject.CompareTag("Player") && 
             !hasBeenInteractedWith)
         {
