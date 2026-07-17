@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Cinemachine;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.VFX;
 
 public class LevelManager : MonoBehaviour
 {
@@ -43,7 +45,15 @@ public class LevelManager : MonoBehaviour
     private bool playIntroAnimation = true;
     public GameObject introCanvas;
     
-    // intro dialogue box
+    // holy light effect
+    public Image holyLightImage;
+    public float fadeSpeed = 2f;
+    private Coroutine fadeLightCoroutine;
+    
+    // particles playing along w. the holy light
+    public VisualEffect statusVFX;
+    
+    // interaction dialogue box
     public int guaranteedDialogueCount = 3; // the total amount of dialogue boxes in the intro part
     public float dialogueProbability = 0.3f; // the probability of showing a dialogue box after dropping an item
     private int currentInteractionCount = 0;
@@ -81,6 +91,12 @@ public class LevelManager : MonoBehaviour
         
         // intro animation
         introCanvas = GameObject.Find("IntroCanvas");
+        
+        // holy light effect
+        holyLightImage = GameObject.Find("HolyLight").GetComponent<Image>();
+        
+        // status VFX
+        statusVFX = GameObject.Find("StatusVFX").GetComponent<VisualEffect>();
             
         // dialogue boxes
         dialogueCanvas = GameObject.Find("DialogueCanvas");
@@ -181,24 +197,32 @@ public class LevelManager : MonoBehaviour
         // step 0: hit-stop
         yield return new WaitForSeconds(hitStopDuration);
         
-        // step 1: play holy sound effect
-        if (audioSource != null)
+        // step 0.5: prepare the bool for playing effects
+        // step 0.6: show dialogue box
+        bool isDialogueShowing = ShowDialogue(currentItemType);
+
+        if (isDialogueShowing)
         {
-            Debug.Log("Playing holy sound effect and showing the holy light...");
-            audioSource.PlayOneShot(holySoundEffectClip);
-        }
+            // if the dialogue box is showing
+            // step 1: play holy sound effect
+            if (audioSource != null)
+            {
+                Debug.Log("Playing holy sound effect and showing the holy light...");
+                audioSource.PlayOneShot(holySoundEffectClip);
+            }
+            
+            // step 2: show holy effect
+            PlayHolyLight();
+            
+            // step 3: show status VFX
+            PlayStatusVFX(currentItemType);
         
-        // todo step 2: show holy effect
-        
-        // step 3: show dialogue box
-        ItemType itemType = currentItemType;
-        ShowDialogue(itemType);
-        
-        // step 3.5: time buffer for reading dialogues
-        if (dialogueBox.activeSelf) // only wait if the dialogue box is active
-        {
-            yield return new WaitForSeconds(2.5f);
-            dialogueBox.SetActive(false); // hide the dialogue box after the buffer time
+            // step 3.5: time buffer for reading dialogues
+            if (dialogueBox.activeSelf) // only wait if the dialogue box is active
+            {
+                yield return new WaitForSeconds(2.5f);
+                dialogueBox.SetActive(false); // hide the dialogue box after the buffer time
+            }
         }
         
         // step 4: hit-stop but 2
@@ -251,7 +275,7 @@ public class LevelManager : MonoBehaviour
     }
 
     // dialogue boxes
-    public void ShowDialogue(ItemType type)
+    public bool ShowDialogue(ItemType type)
     {
         currentInteractionCount++;
         
@@ -276,7 +300,7 @@ public class LevelManager : MonoBehaviour
         if (!shouldShowDialogue)
         {
             dialogueBox.SetActive(false);
-            return;
+            return false;
         }
         
         // otherwise, show the dialogue box with the appropriate text
@@ -286,12 +310,12 @@ public class LevelManager : MonoBehaviour
         {
             // first item -- desk
             case ItemType.Desk:
-                dialogueText.text = "Alright, I'm at my desk. \n Today is the day I absolutely, positively finish all my work... probably.";
+                dialogueText.text = "Alright, I'm at my desk. \n Today is the day I absolutely, positively finish \n all my work... probably.";
                 break;
             
             // food, get energy
             case ItemType.Food:
-                dialogueText.text = "Oops. Well, I couldn't possibly work on an empty stomach. \n Consider this... brain fuel!";
+                dialogueText.text = "Oops. Well, I couldn't possibly work on \n an empty stomach. \n Consider this... brain fuel!";
                 break;
             
             // drinks, stay hydrated
@@ -301,12 +325,12 @@ public class LevelManager : MonoBehaviour
             
             // coffee, wake-up
             case ItemType.Coffee:
-                dialogueText.text = "I had to! Caffeine levels were critically low. \n Now I can finally focus.";
+                dialogueText.text = "I had to! \n Caffeine levels were critically low. \n Now I can finally focus.";
                 break;
             
             // planning, get ready for the task
             case ItemType.Planning:
-                dialogueText.text = "There. A perfectly sharpened pencil and a sorted list. \n I'm just being efficient!";
+                dialogueText.text = "There. \n A perfectly sharpened pencil and a sorted list. \n I'm just being efficient!";
                 break;
             
             // temperature, get warm... or cold
@@ -321,7 +345,7 @@ public class LevelManager : MonoBehaviour
             
             // technology, get techy
             case ItemType.Technology:
-                dialogueText.text = "Finally connected! \n I was just... optimizing my digital workspace before starting.";
+                dialogueText.text = "Finally connected! \n I was just... optimizing my digital workspace \n before starting.";
                 break;
             
             // curiosity, what's inside the box?
@@ -333,5 +357,89 @@ public class LevelManager : MonoBehaviour
                 Debug.LogWarning("Unhandled item type for dialogue: " + type);
                 break;
         }
+
+        return true;
+    }
+
+    public void PlayHolyLight()
+    {
+        if(fadeLightCoroutine != null)
+        {
+            // if a fade coroutine is already running,
+            // stop it before starting a new one
+            StopCoroutine(fadeLightCoroutine);
+        }
+        
+        fadeLightCoroutine = StartCoroutine(FadeHolyLight());
+    }
+    
+    private IEnumerator FadeHolyLight()
+    {
+        // fade in
+        while (holyLightImage.color.a < 0.2f) 
+        {
+            Color c = holyLightImage.color;
+            c.a += Time.deltaTime * fadeSpeed;
+            holyLightImage.color = c;
+            yield return null; 
+        }
+
+        // fade out
+        while (holyLightImage.color.a > 0f)
+        {
+            Color c = holyLightImage.color;
+            c.a -= Time.deltaTime * fadeSpeed;
+            holyLightImage.color = c;
+            yield return null; 
+        }
+        
+        // empty the coroutine reference after finishing the fade effect
+        fadeLightCoroutine = null;
+    }
+
+    private void PlayStatusVFX(ItemType type)
+    {
+        if (statusVFX == null)
+        {
+            Debug.LogWarning("Status VFX is not assigned in the LevelManager.");
+            return;
+        }
+        
+        // position of the particles
+        statusVFX.transform.position = GameObject.Find("Player").transform.position 
+                                       + new Vector3(0, 0.75f, 0);
+
+        // 0 = Fullness
+        // 1 = Energy
+        // 2 = Mood
+        
+        int vfxIndex = 2; // default VFX index : mood +10
+
+        switch (type)
+        {
+            // food and drinks increase fullness
+            case ItemType.Food:
+            case ItemType.Drinks:
+                vfxIndex = 0; 
+                break;
+            
+            // energy
+            case ItemType.Coffee:
+            case ItemType.Desk:
+            case ItemType.Technology:
+            case ItemType.Planning:
+                vfxIndex = 1;
+                break;
+            
+            // mood
+            case ItemType.Temperature:
+            case ItemType.Curiosity:
+            case ItemType.Distraction:
+                vfxIndex = 2; 
+                break;
+        }
+        
+        statusVFX.SetInt("StatusTypeIndex", vfxIndex); 
+        statusVFX.SendEvent("OnInteract");
     }
 }
