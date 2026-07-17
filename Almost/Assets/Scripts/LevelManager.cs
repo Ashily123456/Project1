@@ -55,7 +55,7 @@ public class LevelManager : MonoBehaviour
     
     // interaction dialogue box
     public int guaranteedDialogueCount = 3; // the total amount of dialogue boxes in the intro part
-    public float dialogueProbability = 0.3f; // the probability of showing a dialogue box after dropping an item
+    public float dialogueProbability = 0.4f; // the probability of showing a dialogue box after dropping an item
     private int currentInteractionCount = 0;
     
     public GameObject dialogueCanvas;
@@ -376,7 +376,7 @@ public class LevelManager : MonoBehaviour
     private IEnumerator FadeHolyLight()
     {
         // fade in
-        while (holyLightImage.color.a < 0.2f) 
+        while (holyLightImage.color.a < 0.35f) 
         {
             Color c = holyLightImage.color;
             c.a += Time.deltaTime * fadeSpeed;
