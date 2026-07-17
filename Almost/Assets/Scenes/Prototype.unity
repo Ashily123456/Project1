@@ -18611,7 +18611,7 @@ MonoBehaviour:
   hitStopDuration: 0.2
   delayBeforeDrop: 1.25
   dropDuration: 0.25
-  playIntroAnimation: 0
+  playIntroAnimation: 1
   introCanvas: {fileID: 0}
   holyLightImage: {fileID: 0}
   fadeSpeed: 0.52
