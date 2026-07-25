@@ -254,18 +254,6 @@ public class LevelManager : MonoBehaviour
         // flag the isFalling to false
         item.GetComponent<InteractiveObject>().isFalling = false;
         
-        /*// ending-related, check if the item hit the player
-        if (player != null)
-        {
-            float distance = Vector3.Distance(targetPosition, player.transform.position);
-
-            if (distance < squashBuffer)
-            {
-                // squash the player, bad ending
-                player.GetComponent<PlayerController>().SquashPlayer();
-            }
-        }*/
-        
         // screen shake effect
         float finalForce = 1f;
 
