@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     
     // flag game begin
     public bool gameStarted = false;
+    public bool hasPlayedIntro = false;
     
     // Start is called before the first frame update
     void Start()

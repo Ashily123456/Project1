@@ -107,16 +107,31 @@ public class LevelManager : MonoBehaviour
         // initialize
         GameManager.instance.gameStarted = false;
         
+        // check if we've already played the intro in this play session
+        if (GameManager.instance != null && GameManager.instance.hasPlayedIntro)
+        {
+            playIntroAnimation = false;
+        }
+
         // play the intro animation if the flag is set to true
         if (playIntroAnimation && introCanvas != null)
         {
             // find avatar on the fist child
             introCanvas.transform.GetChild(0).GetComponent<Animator>().Play("IntroStoryBoard");
+            
+            // mark that we've seen it so we can skip next time
+            if (GameManager.instance != null) 
+            {
+                GameManager.instance.hasPlayedIntro = true;
+            }
         }
         else
         {
             Debug.LogWarning("Intro canvas not found or playIntroAnimation is set to false. Skipping intro animation.");
-            introCanvas.SetActive(false);
+            if (introCanvas != null)
+            {
+                introCanvas.SetActive(false);
+            }
             GameManager.instance.gameStarted = true; // start the game immediately if no intro animation
         }
     }
