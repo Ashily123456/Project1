@@ -21,6 +21,11 @@ public class PlayerController : MonoBehaviour
     private float idleTimer = 0f;
     private bool isMelting = false;
     
+    // WASD cue
+    public GameObject wasdCueUI;
+    private bool hasMovedOnce = false;
+    private bool wasdCueShown = false;
+    
     // squashing
     public VisualEffect squashEffect;
     
@@ -80,14 +85,39 @@ public class PlayerController : MonoBehaviour
         bool isMoving = (moveX != 0f || moveY != 0f);
         animator.SetBool("isWalking", isMoving);
         
+        // show WASD cue when game just started
+        if (!wasdCueShown)
+        {
+            wasdCueShown = true;
+            if (wasdCueUI != null)
+            {
+                wasdCueUI.SetActive(true);
+            }
+        }
+        
         // melting
         if (isMoving)
         {
+            if (!hasMovedOnce)
+            {
+                hasMovedOnce = true;
+                if (wasdCueUI != null)
+                {
+                    wasdCueUI.SetActive(false); // hide the cue on first move
+                }
+            }
+            
             // as long as the player moves, reset the idle timer
             idleTimer = 0;
         }
         else
         {
+            // do not start melting countdown if the player hasn't moved once yet
+            if (!hasMovedOnce)
+            {
+                return;
+            }
+            
             if (LevelManager.instance != null && 
                 LevelManager.instance.dialogueBox.activeSelf)
             {
